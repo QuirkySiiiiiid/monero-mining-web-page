@@ -1,24 +1,39 @@
-from flask import Flask, request, jsonify
+from flask import Flask, jsonify
 import subprocess
 import os
 
 app = Flask(__name__)
 
-# Variable to store mining process
+# Store the mining process
 mining_process = None
 
+# Hardcoded Monero mining configuration
+WALLET_ADDRESS = "YOUR_MONERO_WALLET_ADDRESS"
+POOL_URL = "pool.supportxmr.com:3333"  # Example pool
+POOL_PASSWORD = "x"
+
+# Start mining with hardcoded configuration
 @app.route('/start-mining', methods=['POST'])
 def start_mining():
     global mining_process
     if mining_process is None:
         try:
-            mining_process = subprocess.Popen(['xmrig', '-c', 'config.json'])
+            mining_command = [
+                'xmrig',
+                '-o', POOL_URL,
+                '-u', WALLET_ADDRESS,
+                '-p', POOL_PASSWORD,
+                '--keepalive',
+                '--cpu-priority', '5'  # Example priority
+            ]
+            mining_process = subprocess.Popen(mining_command)
             return "Mining started!", 200
         except Exception as e:
             return f"Error: {str(e)}", 500
     else:
         return "Mining is already running!", 400
 
+# Stop mining
 @app.route('/stop-mining', methods=['POST'])
 def stop_mining():
     global mining_process
@@ -29,6 +44,7 @@ def stop_mining():
     else:
         return "Mining is not running!", 400
 
+# Status check
 @app.route('/status', methods=['GET'])
 def status():
     global mining_process
