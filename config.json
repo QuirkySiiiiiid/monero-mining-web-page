@@ -1,0 +1,19 @@
+{
+    "pools": [
+        {
+            "url": "pool.supportxmr.com:3333",
+            "user": "YOUR_WALLET_ADDRESS",
+            "pass": "x",
+            "keepalive": true,
+            "nicehash": false
+        }
+    ],
+    "cpu": {
+        "enabled": true,
+        "max-threads-hint": 100,
+        "hw-aes": null,
+        "priority": null,
+        "memory-pool": false,
+        "yield": true
+    }
+}
