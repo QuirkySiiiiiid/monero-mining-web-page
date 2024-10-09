@@ -1,30 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Monero Miner Control</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Monero Mining Control</title>
 </head>
 <body>
-    <h1>Monero Miner Control</h1>
-    <p>Use this interface to control Monero mining.</p>
+  <h1>Monero Mining Dashboard</h1>
+  <button id="startMining">Start Mining</button>
+  <button id="stopMining">Stop Mining</button>
 
-    <form action="/start-mining" method="POST">
-        <button type="submit">Start Mining</button>
-    </form>
+  <p id="status">Status: Idle</p>
 
-    <form action="/stop-mining" method="POST">
-        <button type="submit">Stop Mining</button>
-    </form>
-
-    <p>Status: <span id="mining-status">Not Running</span></p>
-
-    <script>
-        fetch("/status")
-            .then(response => response.json())
-            .then(data => {
-                document.getElementById("mining-status").textContent = data.status;
-            });
-    </script>
+  <script src="miner.js"></script>
 </body>
 </html>
