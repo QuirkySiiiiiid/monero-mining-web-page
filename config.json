@@ -2,17 +2,16 @@
     "pools": [
         {
             "url": "pool.supportxmr.com:3333",
-            "user": "YOUR_WALLET_ADDRESS",
+            "user": "YOUR_MONERO_WALLET_ADDRESS",
             "pass": "x",
-            "keepalive": true,
-            "nicehash": false
+            "keepalive": true
         }
     ],
     "cpu": {
         "enabled": true,
         "max-threads-hint": 100,
         "hw-aes": null,
-        "priority": null,
+        "priority": 5,
         "memory-pool": false,
         "yield": true
     }
